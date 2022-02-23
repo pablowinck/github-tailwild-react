@@ -6,7 +6,7 @@ const Infos: React.FC = () => {
   console.log("infos data", data);
 
   return (
-    <div className="h-auto w-full bg-slate-900 rounded-lg p-5">
+    <div className="h-auto w-full bg-300 rounded-lg p-5">
       <div className="flex justify-evenly">
         <div className="flex flex-col">
           <div className="text-sm text-grey">Repos</div>

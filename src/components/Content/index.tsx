@@ -7,7 +7,9 @@ import Infos from "../Infos";
 import SocialMedia from "../SocialMedia";
 
 const Container: React.FC = ({ children }) => (
-  <div className="h-3/4 w-full rounded-lg p-10 bg-200">{children}</div>
+  <div className="h-auto w-full rounded-lg sm:p-10 p-4 bg-200 grid place-items-center">
+    {children}
+  </div>
 );
 
 const Content: React.FC = () => {
@@ -47,43 +49,52 @@ const Content: React.FC = () => {
 
   return (
     <Container>
-      <div className="flex gap-5">
-        <div className="w-auto">
-          <div className="w-20 h-20 rounded-full grid place-items-center">
-            <BounceLoader
-              color={"#0583F2"}
-              loading={!imageLoad}
-              css={override}
-              size={60}
-            />
-            <img
-              className="rounded-full h-full w-full z-10"
-              src={
-                data?.avatar_url
-                  ? data.avatar_url
-                  : "https://www.ecp.org.br/wp-content/uploads/2017/12/default-avatar-1.png"
-              }
-              onLoad={() => setImageLoad(true)}
-              alt="Avatar"
-            />
+      <div className="flex flex-col gap-5 sm:gap-0">
+        <div className="flex gap-5 w-full">
+          <div className="w-auto">
+            <div className="w-20 h-20 rounded-full grid place-items-center">
+              <BounceLoader
+                color={"#0583F2"}
+                loading={!imageLoad}
+                css={override}
+                size={60}
+              />
+              <img
+                className="rounded-full h-full w-full z-10"
+                src={
+                  data?.avatar_url
+                    ? data.avatar_url
+                    : "https://www.ecp.org.br/wp-content/uploads/2017/12/default-avatar-1.png"
+                }
+                onLoad={() => setImageLoad(true)}
+                alt="Avatar"
+              />
+            </div>
           </div>
-        </div>
-        <div className="w-full h-full flex flex-col">
-          <div className="flex flex-col gap-5">
-            <div className="flex flex-col">
-              <div className="w-full flex justify-between items-center">
-                <div className="text-2xl text-white font-bold">
-                  {data.name || "No name"}
+          <div className="w-full h-full flex flex-col">
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col">
+                <div className="w-full flex sm:gap-5 justify-between sm:items-center flex-col sm:flex-row">
+                  <div className="text-xl text-white font-bold">
+                    {data.name || "No name"}
+                  </div>
+                  <div className="text-sm text-grey">
+                    Joined {dayjs(data?.created_at).format("DD MMM YYYY")}
+                  </div>
                 </div>
-                <div className="text-sm text-grey">
-                  Joined {dayjs(data?.created_at).format("DD MMM YYYY")}
+                <div className="w-full text-sm text-light-blue">
+                  {data?.login ? `@${data?.login}` : "Not Available"}
                 </div>
-              </div>
-              <div className="w-full text-sm text-light-blue">
-                {data?.login ? `@${data?.login}` : "Not Available"}
               </div>
             </div>
+          </div>
+        </div>
+        <div className="flex gap-5">
+          <div className="w-auto hidden sm:flex">
+            <div className="w-20 h-20"></div>
+          </div>
 
+          <div className="w-full flex flex-col gap-6">
             <div className="w-full text-sm text-grey">
               {data.bio || "No bio available"}
             </div>

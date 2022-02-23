@@ -27,11 +27,11 @@ const SocialMedia: React.FC = () => {
   ];
 
   return (
-    <div className="h-auto w-full grid grid-cols-2 gap-4">
+    <div className="h-auto w-full grid sm:grid-cols-2 grid-cols-1 gap-4">
       {currentData.map(({ icon, text }, index) => (
         <div
           key={index}
-          className="text-sm w-32 flex items-center gap-2 text-white"
+          className="sm:text-sm text-md sm:w-32 w-full flex items-center gap-2 text-white"
         >
           <div className={`${!text && "text-grey"}`}>{icon}</div>
           <div className={`${!text && "text-grey select-none"}`}>
