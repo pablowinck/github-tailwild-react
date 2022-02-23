@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "yarn build:styles && tsc && vite build",
+    "preview": "vite preview",
+    "build:styles": "npx tailwindcss -i ./src/input.css -o ./dist/output.css"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
