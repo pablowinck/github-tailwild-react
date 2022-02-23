@@ -32,7 +32,7 @@ const Searchbar: React.FC = () => {
       <SearchIcon />
 
       <input
-        className="w-full text-grey px-3 bg-transparent no-underline"
+        className="w-full sm:text-md text-sm text-grey px-3 bg-transparent no-underline"
         type="text"
         placeholder="Search Github username..."
         value={currentUsername}
