@@ -29,6 +29,7 @@ const Content: React.FC = () => {
   );
 
   useEffect(() => {
+    setImageLoad(false);
     setData(data);
   }, [data]);
 
@@ -49,7 +50,12 @@ const Content: React.FC = () => {
       <div className="flex gap-5">
         <div className="w-auto">
           <div className="w-20 h-20 rounded-full grid place-items-center">
-            <BounceLoader color={"#0583F2"} css={override} size={60} />
+            <BounceLoader
+              color={"#0583F2"}
+              loading={!imageLoad}
+              css={override}
+              size={60}
+            />
             <img
               className="rounded-full h-full w-full z-10"
               src={
