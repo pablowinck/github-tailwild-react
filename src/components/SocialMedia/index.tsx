@@ -1,35 +1,42 @@
 import React from "react";
-import { ImLink, ImLocation2, ImTwitter } from "react-icons/im";
+import { AiFillGithub } from "react-icons/ai";
+import { ImLocation2, ImTwitter } from "react-icons/im";
 import { MdOutlineLocationCity } from "react-icons/md";
-const data = [
-  {
-    icon: <ImLocation2 />,
-    text: "San Francisco",
-  },
-  {
-    icon: <ImTwitter />,
-    text: null,
-  },
-  {
-    icon: <ImLink />,
-    text: "https://github.blog",
-  },
-  {
-    icon: <MdOutlineLocationCity />,
-    text: "@github",
-  },
-];
+import { useUserContext } from "../../context/UserContext";
 
 const SocialMedia: React.FC = () => {
+  const { data } = useUserContext();
+
+  const currentData = [
+    {
+      icon: <ImLocation2 />,
+      text: data?.location,
+    },
+    {
+      icon: <ImTwitter />,
+      text: data?.twitter_username,
+    },
+    {
+      icon: <AiFillGithub />,
+      text: data?.login && "/" + data?.login,
+    },
+    {
+      icon: <MdOutlineLocationCity />,
+      text: data?.login && `@${data?.login}`,
+    },
+  ];
+
   return (
     <div className="h-auto w-full grid grid-cols-2 gap-4">
-      {data.map(({ icon, text }, index) => (
+      {currentData.map(({ icon, text }, index) => (
         <div
           key={index}
           className="text-sm w-32 flex items-center gap-2 text-white"
         >
-          <div>{icon}</div>
-          <div>{text ? text : "Not Available"}</div>
+          <div className={`${!text && "text-grey"}`}>{icon}</div>
+          <div className={`${!text && "text-grey select-none"}`}>
+            {text || "Not Available"}
+          </div>
         </div>
       ))}
     </div>

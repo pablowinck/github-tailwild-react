@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useUserContext } from "../../context/UserContext";
 
 const SearchIcon = () => (
   <svg
@@ -18,18 +19,32 @@ const SearchIcon = () => (
 );
 
 const Searchbar: React.FC = () => {
+  const { setUsername } = useUserContext();
+  const [currentUsername, setCurrentUsername] = useState<string>("");
   return (
-    <div className="flex gap-2 pl-4 pr-2 py-1 items-center w-full h-12 rounded-lg bg-200">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setUsername(currentUsername);
+      }}
+      className="flex gap-2 pl-4 pr-2 py-1 items-center w-full h-12 rounded-lg bg-200"
+    >
       <SearchIcon />
+
       <input
         className="w-full text-grey px-3 bg-transparent no-underline"
         type="text"
         placeholder="Search Github username..."
+        value={currentUsername}
+        onChange={(e) => setCurrentUsername(e.currentTarget.value)}
       />
-      <button className="h-full text-white px-5 rounded-lg bg-light-blue hover:bg-dark-blue transition-colors duration-300">
+      <button
+        type="submit"
+        className="h-full text-white px-5 rounded-lg bg-light-blue hover:bg-dark-blue transition-colors duration-300"
+      >
         Search
       </button>
-    </div>
+    </form>
   );
 };
 
