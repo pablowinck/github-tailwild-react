@@ -26,7 +26,7 @@ const SocialMedia: React.FC = () => {
       {data.map(({ icon, text }, index) => (
         <div
           key={index}
-          className="text-sm w-32 flex items-center gap-2 text-stone-300"
+          className="text-sm w-32 flex items-center gap-2 text-white"
         >
           <div>{icon}</div>
           <div>{text ? text : "Not Available"}</div>

@@ -5,7 +5,7 @@ import Searchbar from "./components/Searchbar";
 
 function App() {
   return (
-    <div className="h-full w-full grid place-items-center bg-slate-800">
+    <div className="h-full w-full grid place-items-center bg-300">
       <Container>
         <Header />
         <Searchbar />
